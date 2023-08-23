@@ -1,0 +1,3 @@
+rep "SE Project-Neon Assault@CSUN_SE@cloud"
+  path "/"
+    smartbranch "/main"

@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: aab7998035a7f314d8f1584a062df3e1
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Fighting Spirit TBS
+  fontNames:
+  - Fighting Spirit TBS
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: e236ad34de39ffb4e89a7de45bef99b8, type: 3}
+  - {fileID: 12800000, guid: 6c729a5c4e682a2498748ae05a72c3d5, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

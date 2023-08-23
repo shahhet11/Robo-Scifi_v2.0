@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &716894738468781129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 716894738468781128}
+  - component: {fileID: 716894738468781135}
+  - component: {fileID: 716894738468781134}
+  m_Layer: 0
+  m_Name: '[GameManager]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &716894738468781128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716894738468781129}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -12.7, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &716894738468781135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716894738468781129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02cb8a4327e8fd046ada4dd496357c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainPlayer: {fileID: 0}
+  PlayerHealth: {fileID: 0}
+  CameraShaker: {fileID: 0}
+  PlayerWeapon: {fileID: 0}
+  UIManager: {fileID: 716894738468781134}
+  maxHealthPlayer: 100
+  maxHealthAI: 100
+  maxBoxDestroyTime: 6
+  timeBetweenAttackAI: 1
+  killCounter: 0
+  minUpgradeKills: 10
+  minHealthKills: 15
+  ChargeParticles: {fileID: 0}
+  AftershockParticles: {fileID: 0}
+  NormalAISpeed: 5
+  RedAISpeed: 8
+  AiPlayers:
+  - {fileID: 3403270279271279997, guid: c6eef6a4ecbe77c409281d5553ff9068, type: 3}
+  - {fileID: 1607435207346008810, guid: bd03ad255fa39dd41a8fc21ebc72033b, type: 3}
+  - {fileID: 2775345847092360910, guid: 709ee9c2e1403ac47a80fbd0ee5e0d52, type: 3}
+  - {fileID: 2775345847092360910, guid: 709ee9c2e1403ac47a80fbd0ee5e0d52, type: 3}
+  AiSpawnPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  NextAiSpawnAfter: 0.5
+  maxAIcount: 5
+  AIWithBulletNum: 4
+  AiCount: 0
+  DamageList: 3200000064000000
+--- !u!114 &716894738468781134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716894738468781129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc11c73821da4904589e3199d48dda19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 0}
