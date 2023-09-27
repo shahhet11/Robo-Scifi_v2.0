@@ -132,15 +132,24 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region
-    [Header("Weapon Inventory")]
+    [Header("Primary Weapon Inventory")]
     public GameObject WeaponDisplayFrame;
     public Image[] highlightImages;
     public RawImage displayImage; // The RawImage to display textures
     public Texture[] textureArray; // Array of textures to cycle through
+    public AmmoCustomization ammoCustomization;
     public int currentWeaponIndex = 0; // Index of the currently displayed texture
     public string[] WeaponNames;
     public Text currentWeaponName;
     public AudioSource ClickSoundSource;
+    [Header("Secondary Weapon Inventory")]
+    public Image[] highlightImagesSecondary;
+    public RawImage displayImageSecondary; // The RawImage to display textures
+    public Texture[] textureArraySecondary; // Array of textures to cycle through
+    public int currentSecondaryWeaponIndex = 0; // Index of the currently displayed texture
+    public string[] SecondaryWeaponNames;
+    public Text currentSecondaryWeaponName;
+    public Color32[] secondaryWeaponColor;
     #endregion
     public GameObject DeathScreen;
     bool isDead = false;
@@ -203,10 +212,10 @@ public class GameManager : MonoBehaviour
         ClickSoundSource.Play();
         Debug.Log("currentWeaponIndex" + currentWeaponIndex);
         displayImage.texture = textureArray[currentWeaponIndex];
+        ammoCustomization.DisplayAmmo();
 
 
-       
-        
+
         for (int i = 0; i < highlightImages.Length; i++)
         {
             if (i == currentWeaponIndex)
@@ -222,10 +231,24 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
+    void SwitchSecondaryWeapon()
+    {
+        PlayerWeapon.SecondaryWeaponCollection[currentSecondaryWeaponIndex].SetActive(false);
+        currentSecondaryWeaponIndex = (currentSecondaryWeaponIndex + 1) % textureArraySecondary.Length;
+        displayImageSecondary.texture = textureArraySecondary[currentSecondaryWeaponIndex];
+        for (int i = 0; i < textureArraySecondary.Length; i++)
+        {
+            if (i == currentSecondaryWeaponIndex)
+            {
+                currentSecondaryWeaponName.text = SecondaryWeaponNames[i];
+                currentSecondaryWeaponName.color = secondaryWeaponColor[i];
+                PlayerWeapon.SecondaryWeaponCollection[i].SetActive(true);
+            }
+        }
+    }
     void Start()
     {
-        GamePlayRequirements();
+        //GamePlayRequirements();
         //SpawnAIPlayer(1);
     }
     void TimePerMatchTaken()
@@ -260,7 +283,7 @@ public class GameManager : MonoBehaviour
                 isNextLevelMenu = true;
                 if (isNextLevelMenu)
                 {
-                    OnLevelComplete();
+                    //OnLevelComplete();
                 }
             }
                 AiTimer += Time.deltaTime;
@@ -270,14 +293,14 @@ public class GameManager : MonoBehaviour
 
         if (allowSlowTime)
         {
-            if (Input.GetKeyDown(KeyCode.RightShift))
+            if (Input.GetKeyDown(KeyCode.LeftControl))
             {
                 Time.timeScale = 0.1f;
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
 
                 PlayerMove.isHoldingShift = true;
             }
-            else if (Input.GetKeyUp(KeyCode.RightShift))
+            else if (Input.GetKeyUp(KeyCode.LeftControl))
             {
                 Time.timeScale = 1f;
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
@@ -309,6 +332,12 @@ public class GameManager : MonoBehaviour
         else if (scrollInput < 0) // Scrolling down
         {
             ShowNextTexture();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            // Switch Secondary guns physgun and Gravitygun
+            SwitchSecondaryWeapon();
         }
 
     }

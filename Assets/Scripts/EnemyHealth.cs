@@ -42,7 +42,7 @@ public class EnemyHealth : MonoBehaviour
     public void UpdateHealth(int Damage, Vector3 pos)
     {
         HealthPoints -= Damage;
-
+        GameManager.Instance.CameraShaker.Shake();
         if (HealthPoints <= 0)
         {
             GameManager.Instance.killCounter++;
@@ -78,11 +78,11 @@ public class EnemyHealth : MonoBehaviour
             }
 
             //GameManager.Instance.AiCount--;
-            //GameManager.Instance.CameraShaker.Shake();
+            GameManager.Instance.CameraShaker.Shake();
             GameObject blast = Instantiate(blastPrefab, pos, Quaternion.identity);
             Destroy(blast, 1f);
-
-            Destroy(gameObject);
+            //GameManager.Instance.CameraShaker.Shake();
+           Destroy(gameObject);
         }
     }
 }

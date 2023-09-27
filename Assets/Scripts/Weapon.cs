@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
 	public int currentWeaponId;
     public GameObject[] AmmoCollection;
     public GameObject[] WeaponCollection;
+    public GameObject[] SecondaryWeaponCollection;
     public GameManager GameManager;
 	void Start ()
 	{
@@ -15,5 +16,6 @@ public class Weapon : MonoBehaviour
 		currentWeaponId = GameManager.currentWeaponIndex;//PlayerPrefs.GetInt("selectedWeapon");
         WeaponCollection[currentWeaponId].SetActive(true);
         AmmoCollection[currentWeaponId].SetActive(true);
+        SecondaryWeaponCollection[currentWeaponId].SetActive(true);
     }
 }

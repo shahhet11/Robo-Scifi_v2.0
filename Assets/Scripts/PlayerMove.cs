@@ -205,8 +205,8 @@ public class PlayerMove : MonoBehaviour
             var em = dashParticles.emission;
             em.rateOverDistance = dashEffectRate;
 
-            moveVector.x = Input.GetAxisRaw("Horizontal") * dashSpeed * Time.deltaTime;
-            moveVector.z = Input.GetAxisRaw("Vertical") * dashSpeed * Time.deltaTime;
+            moveVector.x = Input.GetAxisRaw("Horizontal") * dashSpeed * Time.deltaTime * 2f;
+            moveVector.z = Input.GetAxisRaw("Vertical") * dashSpeed * Time.deltaTime * 2f;
 
             characterController.Move(moveVector);
         }
@@ -302,7 +302,7 @@ public class PlayerMove : MonoBehaviour
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0)
             {
-                Debug.Log("afefegewsrgewwa");
+                //Debug.Log("afefegewsrgewwa");
                 JetPackAllowed = true;
                 timeLeft = 30;
             }
@@ -319,7 +319,7 @@ public class PlayerMove : MonoBehaviour
             movementSpeed = 2;
             if (jetPackDesign.color != blackColor)
             {
-                Debug.Log("afefewa");
+                //Debug.Log("afefewa");
                 float t = (Time.time - startTime) * speed;
                 jetPackDesign.color = Color.Lerp(jetPackDesign.color, blackColor, t);
                 timetoInit = 0f;

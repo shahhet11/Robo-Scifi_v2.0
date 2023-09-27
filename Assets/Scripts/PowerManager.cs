@@ -25,7 +25,7 @@ public class PowerManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.B))
         {
             bombIndicators.SetActive(true);
 

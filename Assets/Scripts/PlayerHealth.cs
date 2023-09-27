@@ -61,7 +61,6 @@ public class PlayerHealth : MonoBehaviour
     public void SetHealthSlider(float hp)
     {
         int maxHealth = GameManager.Instance.maxHealthPlayer;
-        Debug.Log("");
         float total = ((float)(hp * 1f) / 100);
         if (total < 0f)
             total = 0f;

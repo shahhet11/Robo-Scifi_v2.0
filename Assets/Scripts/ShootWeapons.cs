@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ShootWeapons : MonoBehaviour
 {
-   
-   
+
+    public int WeaponID;
     public Transform[] ShootPosition;
     public GameObject Bullet;
     public GameObject Shieldprefab;
@@ -33,6 +33,9 @@ public class ShootWeapons : MonoBehaviour
    public float COUNTER = 100f;
     [Header("FPS")]
     public GameObject FPSgraph;
+    [Header("AmmoCustom")]
+    public AmmoCustomization ammoCustomization;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,20 +44,43 @@ public class ShootWeapons : MonoBehaviour
        
 
     }
-
+    
     void Update()
     {
+       
         if (PowerManager.isIndicatorOn == false)
         {
-            if (Input.GetMouseButton(0) && Time.realtimeSinceStartup > nextFire)
+            if (Input.GetMouseButton(0) && Time.realtimeSinceStartup > nextFire && !ammoCustomization.weaponAmmoList[WeaponID].isReloading && ammoCustomization.weaponAmmoList[WeaponID].ammoCurrent != 0)
             {
-                nextFire = Time.realtimeSinceStartup + fireRate;
-
-                for (int i = 0; i < ShootPosition.Length; i++)
+                //&& Time.realtimeSinceStartup > nextFire
+                if (Bullet)
                 {
-                    projectile = Instantiate(Bullet, ShootPosition[i].position, ShootPosition[i].rotation) as GameObject;
-                    projectile.GetComponent<Rigidbody>().velocity = ShootPosition[i].forward * speed;
+                    RaycastHit hit;
+                    if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 10000f) && ShootPosition.Length > 0)
+                    {
+                        nextFire = Time.realtimeSinceStartup + fireRate;
+
+                        for (int i = 0; i < ShootPosition.Length; i++)
+                        {
+                            projectile = Instantiate(Bullet, ShootPosition[i].position, ShootPosition[i].rotation) as GameObject;
+                            projectile.transform.LookAt(hit.point);
+                            projectile.GetComponent<Rigidbody>().AddForce(projectile.transform.forward * speed);
+                            
+                        }
+                    }
+                    //FIRE();
+
+                    ammoCustomization.InterpolateAmmoColor(60);
+                    ammoCustomization.AmmoUpdate();
+                    
+                    ammoCustomization.AmmoIconLayer0[0].SetActive(true);
+                    ammoCustomization.AmmoIconLayer0[1].SetActive(true);
                 }
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                ammoCustomization.AmmoIconLayer0[0].SetActive(false);
+                ammoCustomization.AmmoIconLayer0[1].SetActive(false);
             }
         }
         //if (Input.GetMouseButton(0) && Time.time > nextFire)
@@ -233,10 +259,10 @@ public class ShootWeapons : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 10000f) && ShootPosition.Length > 0)
             {
-            //PV.RPC("FIREREMOTE", RpcTarget.All, hit.point);
-            Debug.Log(Camera.main.ScreenPointToRay(Input.mousePosition)+ "ScreenPointToRay(Input.mousePosition");
+                //PV.RPC("FIREREMOTE", RpcTarget.All, hit.point);
+                //Debug.Log(Camera.main.ScreenPointToRay(Input.mousePosition)+ "ScreenPointToRay(Input.mousePosition");
                 nextFire = Time.time + fireRate;
-            fireJoyStickAnimation.Play();
+                //fireJoyStickAnimation.Play();
                 for (int i = 0; i < ShootPosition.Length; i++)
                 {
                     projectile = Instantiate(Bullet, ShootPosition[i].position, ShootPosition[i].rotation) as GameObject;

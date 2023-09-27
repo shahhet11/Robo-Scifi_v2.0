@@ -22,8 +22,8 @@ public class HomeScreen : MonoBehaviour
 
      void Start()
     {
-        PlayerPrefs.SetInt("TotalGold", Goldint);
         //PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("TotalGold", Goldint);
         if (PlayerPrefs.GetInt("SetWalletFirstTime") == 0)
         {
             PlayerPrefs.SetInt("TotalGold", Goldint); 
